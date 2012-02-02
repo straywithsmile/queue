@@ -1,3 +1,20 @@
+/*
+ * TQUEUE : test_suit
+ * Author : Richard Cao @ Netease.com
+ * Email : straywithsmile@163.com
+ * License : BSD License
+ * USAGE :
+ * 	TQUEUE_CREATE(queue_head, entry, queue_ob)
+ * 	struct queue_ob {
+ * 		...
+ * 		TQUEUE_ENTRY(queue_ob) entry;
+ * 		...
+ * 	}
+ * 	TQUEUE_SIZE_INIT(&queue_head, entry, queue_ob, num_ob);
+ * 	TQUEUE_POP(&queue_head, item, entry);
+ * 	TQUEUE_PUSH(&queue_head, item, entry);
+ * Desc : this is a multi-thread queue base on pthread and STAILQ in BSD <sys/queue.h>, if you use it, I appreciate you give me Email to report the bug, or give me some suggest to improve quality of the code and improve my skill, thanks very much!
+ */
 #ifndef __RICHARD_THREAD_QUEUE__
 #define __RICHARD_THREAD_QUEUE__
 

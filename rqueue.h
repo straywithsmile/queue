@@ -1,3 +1,11 @@
+/*
+ * TQUEUE : test_suit
+ * Author : Richard Cao @ Netease.com
+ * Email : straywithsmile@163.com
+ * License : BSD License
+ * Desc : this is a pool managed by queue, easy to alloc or free item from the pool
+ */
+
 #ifndef __RICHARD_QUEUE__
 #define __RICHARD_QUEUE__
 

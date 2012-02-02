@@ -1,3 +1,8 @@
+/*
+ * TQUEUE : test_suit
+ * Author : Richard Cao @ Netease.com
+ * Email : straywithsmile@163.com
+ */
 #include "tqueue.h"
 #include <stdio.h>
 #include <stdlib.h>
