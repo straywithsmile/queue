@@ -5,28 +5,28 @@
 
 #define STAILQ_POOL_CREATE(head, type) STAILQ_HEAD(head, type) head = STAILQ_HEAD_INITIALIZER(head);
 
-#define STAILQ_POOL_EXTEND(free_queue_head, entry, mem_start, num) do{ \
+#define STAILQ_POOL_EXTEND(head, entry, mem_start, num) do{ \
 	        int _block_idx = num - 1; \
 	        for (; _block_idx >= 0; --_block_idx) \
 	        { \
-			STAILQ_INSERT_TAIL(free_queue_head, (mem_start) + _block_idx, entry); \
+			STAILQ_INSERT_TAIL(head, (mem_start) + _block_idx, entry); \
 		} \
 } while(0);
 
-#define STAILQ_POOL_ALLOC(free_queue_head, item, entry) do{ \
-	        if (STAILQ_EMPTY(free_queue_head)) \
+#define STAILQ_POOL_ALLOC(head, item, entry) do{ \
+	        if (STAILQ_EMPTY(head)) \
 	        { \
 			item = NULL; \
 		} \
 		else \
 		{ \
-	        	item = STAILQ_FIRST(free_queue_head); \
-	        	STAILQ_REMOVE_HEAD(free_queue_head, entry); \
+	        	item = STAILQ_FIRST(head); \
+	        	STAILQ_REMOVE_HEAD(head, entry); \
 		} \
 } while(0);
 
-#define STAILQ_POOL_FREE(free_queue_head, item, entry) do { \
-	        STAILQ_INSERT_TAIL(free_queue_head, item, entry); \
+#define STAILQ_POOL_FREE(head, item, entry) do { \
+	        STAILQ_INSERT_TAIL(head, item, entry); \
 } while(0);
 
 #endif
