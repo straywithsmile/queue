@@ -7,13 +7,7 @@ typedef struct ob_t {
 	int append;
 }ob;
 
-//typedef STAILQ_HEAD(ob_header_t, ob_t) ob_header;
-//ob_header free_queue = STAILQ_HEAD_INITIALIZER(free_queue);
-
-//STAILQ_POOL_INIT(ob_header_t, free_queue, ob_t);
-STAILQ_POOL_CREATE(free_queue, ob_t);
 TQUEUE_CREATE(tqueue, head_entry, ob_t);
-#define EXTEND_SIZE 100
 int main()
 {
 	ob *data;
@@ -21,9 +15,8 @@ int main()
 	int i;
 
 	//ob_header *empty_queue = &(free_queue);
-	struct free_queue *empty_queue = &(free_queue);
-	TQUEUE_SIZE_INIT(&tqueue, head_entry, ob_t, 3);
-	for (i = 0; i < EXTEND_SIZE; ++i)
+	TQUEUE_SIZE_INIT(&tqueue, head_entry, ob_t, 5);
+	for (i = 0; i < 100; ++i)
 	{
 		TQUEUE_POP(&tqueue, item, head_entry);
 		if (item->append == 0)
@@ -37,6 +30,7 @@ int main()
 		}
 		TQUEUE_PUSH(&tqueue, item, head_entry);
 	}
+
 	/*
 	TQUEUE_INIT(&tqueue, head_entry);
 	data = (ob *)calloc(sizeof(ob), EXTEND_SIZE);
@@ -50,6 +44,7 @@ int main()
 		pthread_mutex_unlock(&((&tqueue)->lock)); 
 	} while(0);
 	*/
+
 	/*
 	for (i = 0; i < EXTEND_SIZE; ++i)
 	{

@@ -6,6 +6,7 @@
 
 #define TQUEUE_ENTRY STAILQ_ENTRY
 #define TQUEUE_HEAD STAILQ_HEAD
+
 #define TQUEUE_CREATE(queue_typename, entry_name, type) \
 	struct { \
 		pthread_mutex_t lock; \
@@ -51,5 +52,7 @@
 	++((queue_head)->size); \
 	pthread_mutex_unlock(&((queue_head)->lock)); \
 } while(0);
+
+#define TQUEUE_SIZE(queue_head) ((queue_head)->size)
 
 #endif
